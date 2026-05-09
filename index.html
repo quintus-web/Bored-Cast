@@ -1,145 +1,941 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE BORED CAST | GK NYAMBURA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --terra: #937060; 
-            --clay: #E5B19A;
-            --ink: #1A1A1A;
-            --cream: #FDFBF7;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Bored Cast — GK Nyambura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-        body {
-            background-color: var(--terra);
-            color: var(--cream);
-            font-family: 'Inter', sans-serif;
-        }
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Improved Readability Nav */
-        .nav-container {
-            background: rgba(26, 26, 26, 0.85); /* Dark background for button clarity */
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    :root {
+      --white:  #ffffff;
+      --off:    #faf8f5;
+      --warm:   #f3ede4;
+      --tan:    #e6ddd0;
+      --text:   #1a1714;
+      --muted:  #7a736c;
+      --accent: #e05c2a;
+      --gold:   #f5a623;
+      --green:  #3a7d5c;
+      --border: rgba(26,23,20,0.09);
 
-        .btn-premium {
-            background: var(--ink);
-            border: 1px solid var(--clay);
-            color: var(--clay);
-            padding: 10px 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      --font-display: 'Syne', sans-serif;
+      --font-serif:   'Instrument Serif', serif;
+      --font-body:    'Nunito', sans-serif;
+    }
 
-        .btn-premium:hover {
-            background: var(--clay);
-            color: var(--ink);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5);
-        }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
 
-        /* Card Depth */
-        .glass-card {
-            background: var(--ink);
-            border: 1px solid rgba(229, 177, 154, 0.2);
-            transition: 0.5s ease;
-        }
+    /* pill tags */
+    .tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.75rem;
+      border-radius: 100px;
+      background: var(--warm);
+      color: var(--muted);
+    }
+    .tag.orange { background: #fde8de; color: var(--accent); }
+    .tag.green  { background: #d8ede4; color: var(--green); }
+    .tag.gold   { background: #fdf0d5; color: #9a6b00; }
 
-        .glass-card:hover {
-            border-color: var(--clay);
-            box-shadow: 20px 20px 60px rgba(0,0,0,0.3);
-        }
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      background: rgba(255,255,255,0.93);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-display);
+      font-size: 0.79rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      font-family: var(--font-display);
+      font-size: 0.79rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.52rem 1.25rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 100px;
+      transition: opacity .2s, transform .15s;
+    }
+    .nav-cta:hover { opacity: .85; transform: translateY(-1px); }
 
-        .serif-italic { font-family: 'Playfair Display', serif; }
-        
-        .section-tag {
-            color: var(--clay);
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-        }
-    </style>
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--off);
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem 0;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 4rem;
+      align-items: flex-end;
+    }
+    .hero-badge {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 1.6rem;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulseAnim 2s ease-in-out infinite;
+    }
+    @keyframes pulseAnim {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:.5; transform:scale(1.35); }
+    }
+    .hero-badge-text {
+      font-family: var(--font-display);
+      font-size: 0.71rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 6.5vw, 5.6rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+    }
+    .hero-h1 .serif {
+      display: block;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+      font-size: 1.07em;
+    }
+    .hero-sub {
+      margin-top: 1.4rem;
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.78;
+      max-width: 430px;
+    }
+    .hero-btns {
+      display: flex; align-items: center; gap: 0.9rem;
+      margin-top: 2.4rem; flex-wrap: wrap;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: .48rem;
+      background: var(--text); color: #fff;
+      font-family: var(--font-display);
+      font-size: .81rem; font-weight: 700;
+      letter-spacing: .05em;
+      padding: .82rem 1.75rem;
+      border-radius: 100px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-dark:hover { background: var(--accent); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: .48rem;
+      border: 1.5px solid rgba(26,23,20,.18);
+      color: var(--text);
+      font-family: var(--font-display);
+      font-size: .81rem; font-weight: 700;
+      letter-spacing: .05em;
+      padding: .82rem 1.75rem;
+      border-radius: 100px;
+      transition: border-color .2s, transform .15s;
+    }
+    .btn-outline:hover { border-color: var(--text); transform: translateY(-2px); }
+
+    /* hero photo */
+    .hero-photo-col {
+      position: relative;
+      align-self: flex-end;
+    }
+    .hero-photo {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 20px 20px 0 0;
+    }
+    /* floating card */
+    .hero-float-card {
+      position: absolute;
+      top: 1.6rem; left: -2rem;
+      background: #fff;
+      border-radius: 16px;
+      padding: .85rem 1.1rem;
+      box-shadow: 0 10px 32px rgba(0,0,0,.11);
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .hero-float-icon {
+      width: 40px; height: 40px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-float-icon svg { width: 20px; height: 20px; fill: #fff; }
+    .hero-float-top {
+      font-family: var(--font-display);
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .05em; color: var(--muted);
+    }
+    .hero-float-bot {
+      font-family: var(--font-display);
+      font-size: .88rem; font-weight: 800;
+      color: var(--text);
+    }
+    /* season pill */
+    .hero-season-pill {
+      position: absolute; bottom: 1.4rem; right: 1.2rem;
+      background: var(--accent); color: #fff;
+      font-family: var(--font-display);
+      font-size: .72rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: .45rem .95rem; border-radius: 100px;
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-bar {
+      background: var(--text);
+      padding: .85rem 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: marqueeScroll 32s linear infinite;
+    }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-track span {
+      font-family: var(--font-display);
+      font-size: .8rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.8);
+      padding: 0 1.8rem;
+    }
+    .marquee-track .dot { color: var(--accent); padding: 0; }
+
+    /* ─── SECTION WRAPPER ─── */
+    .s-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2.5rem;
+    }
+    .s-head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem; gap: 1rem; flex-wrap: wrap;
+    }
+    .s-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .s-title .ac { color: var(--accent); }
+    .s-link {
+      font-family: var(--font-display);
+      font-size: .79rem; font-weight: 700;
+      letter-spacing: .07em; color: var(--accent);
+      white-space: nowrap;
+    }
+    .s-link:hover { text-decoration: underline; }
+
+    /* ─── EPISODE CARDS ─── */
+    .ep-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.4rem;
+    }
+    .ep-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      cursor: pointer;
+    }
+    .ep-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 50px rgba(0,0,0,.09);
+    }
+    .ep-thumb {
+      position: relative;
+      width: 100%; aspect-ratio: 16/9;
+      overflow: hidden; background: var(--warm);
+    }
+    .ep-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      transition: transform .4s;
+    }
+    .ep-card:hover .ep-thumb img { transform: scale(1.05); }
+    .ep-play {
+      position: absolute; bottom: .8rem; right: .8rem;
+      width: 38px; height: 38px;
+      background: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,.14);
+    }
+    .ep-play svg { width: 15px; height: 15px; fill: var(--accent); margin-left: 2px; }
+    .ep-body { padding: 1.2rem 1.3rem 1.5rem; }
+    .ep-meta {
+      display: flex; align-items: center; gap: .5rem;
+      margin-bottom: .55rem;
+    }
+    .ep-num {
+      font-family: var(--font-display);
+      font-size: .67rem; font-weight: 700;
+      letter-spacing: .1em; color: var(--muted);
+    }
+    .ep-sep { width:3px; height:3px; border-radius:50%; background:var(--tan); }
+    .ep-title {
+      font-family: var(--font-display);
+      font-size: 1.02rem; font-weight: 800;
+      letter-spacing: -0.01em; line-height: 1.3;
+      margin-bottom: .48rem;
+    }
+    .ep-desc {
+      font-size: .84rem;
+      color: var(--muted); line-height: 1.6;
+    }
+    .ep-foot {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-top: .95rem;
+      padding-top: .8rem;
+      border-top: 1px solid var(--border);
+    }
+    .ep-dur {
+      font-family: var(--font-display);
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .07em; color: var(--muted);
+    }
+    .yt-badge {
+      display: flex; align-items: center; gap: .32rem;
+      background: #FF0000; color: #fff;
+      font-family: var(--font-display);
+      font-size: .65rem; font-weight: 700;
+      letter-spacing: .06em;
+      padding: .25rem .6rem;
+      border-radius: 5px;
+    }
+    .yt-badge svg { width: 12px; height: 12px; fill: #fff; }
+
+    /* ─── ABOUT ─── */
+    .about-bg {
+      background: var(--off);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-photo-wrap { position: relative; }
+    .about-photo {
+      width: 100%; height: 480px;
+      object-fit: cover; object-position: center top;
+      border-radius: 24px;
+    }
+    .sticker {
+      position: absolute;
+      bottom: -1.2rem; right: -1.2rem;
+      width: 108px; height: 108px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: .76rem; font-weight: 800;
+      letter-spacing: .05em; text-transform: uppercase;
+      line-height: 1.35;
+      color: #5a3e00;
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+      padding: .5rem;
+      transform: rotate(12deg);
+    }
+    .about-tag-row { margin-bottom: 1.1rem; }
+    .about-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      margin-bottom: 1.2rem;
+    }
+    .about-h2 .serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
+    .about-p {
+      font-size: .96rem;
+      color: var(--muted); line-height: 1.8;
+    }
+    .about-p + .about-p { margin-top: .85rem; }
+    .about-stats {
+      display: flex; gap: 2.2rem;
+      margin-top: 2.4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .astat-n {
+      font-family: var(--font-display);
+      font-size: 2.5rem; font-weight: 800;
+      line-height: 1; color: var(--text);
+    }
+    .astat-l {
+      font-size: .78rem; font-weight: 600;
+      color: var(--muted); margin-top: .2rem;
+      letter-spacing: .04em;
+    }
+
+    /* ─── LISTEN ─── */
+    .listen-bg { background: var(--text); }
+    .listen-head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 0; flex-wrap: wrap;
+    }
+    .listen-head .s-title { color: #fff; }
+    .listen-head .s-title .ac { color: var(--gold); }
+    .listen-sub {
+      font-size: .88rem;
+      color: rgba(255,255,255,.38);
+      line-height: 1.65; max-width: 230px;
+    }
+    .plat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,.07);
+      margin-top: 3rem;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .plat-tile {
+      background: #1e1c19;
+      padding: 2.4rem;
+      display: flex; align-items: center; gap: 1.4rem;
+      transition: background .2s;
+    }
+    .plat-tile:hover { background: #252320; }
+    .plat-icon {
+      width: 54px; height: 54px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .plat-icon svg { width: 28px; height: 28px; }
+    .plat-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 800;
+      color: #fff; letter-spacing: -0.01em;
+    }
+    .plat-desc {
+      font-size: .82rem;
+      color: rgba(255,255,255,.38);
+      margin-top: .2rem;
+    }
+    .plat-arr {
+      margin-left: auto;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,.25);
+      transition: color .2s, transform .2s;
+    }
+    .plat-tile:hover .plat-arr { color: var(--gold); transform: translateX(4px); }
+
+    /* ─── SUPPORT ─── */
+    .support-bg {
+      background: var(--warm);
+      border-top: 1px solid var(--border);
+    }
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .support-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-top: 1rem; margin-bottom: 1.2rem;
+    }
+    .support-h2 .serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
+    .support-p {
+      font-size: .96rem; color: var(--muted);
+      line-height: 1.8; max-width: 400px;
+    }
+    .mpesa-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 2.4rem;
+      box-shadow: 0 14px 44px rgba(0,0,0,.07);
+    }
+    .mpesa-top {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .mpesa-icon {
+      width: 50px; height: 50px;
+      background: #4CAF50; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mpesa-icon svg { width: 26px; height: 26px; fill: #fff; }
+    .mpesa-lbl-top {
+      font-family: var(--font-display);
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+    }
+    .mpesa-lbl-bot {
+      font-family: var(--font-display);
+      font-size: .96rem; font-weight: 800; color: var(--text);
+    }
+    .till-label {
+      font-size: .77rem; font-weight: 600;
+      color: var(--muted); letter-spacing: .05em;
+    }
+    .till-num {
+      font-family: var(--font-display);
+      font-size: 3.6rem; font-weight: 800;
+      letter-spacing: .05em; line-height: 1; color: var(--text);
+    }
+    .mpesa-div {
+      height: 1px; background: var(--border);
+      margin: 1.5rem 0;
+    }
+    .steps { list-style: none; counter-reset: step; }
+    .steps li {
+      counter-increment: step;
+      display: flex; align-items: flex-start;
+      gap: .75rem; font-size: .84rem;
+      color: var(--muted); margin-bottom: .55rem;
+      line-height: 1.55;
+    }
+    .steps li::before {
+      content: counter(step);
+      width: 21px; height: 21px;
+      border-radius: 50%;
+      background: var(--warm);
+      font-family: var(--font-display);
+      font-size: .68rem; font-weight: 800;
+      color: var(--text);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--text); }
+    .footer-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 2.5rem;
+    }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 800;
+      color: #fff; margin-bottom: .8rem;
+    }
+    .footer-brand span { color: var(--accent); }
+    .footer-tag {
+      font-size: .86rem; color: rgba(255,255,255,.35);
+      line-height: 1.65; max-width: 280px;
+    }
+    .footer-col-head {
+      font-family: var(--font-display);
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.3); margin-bottom: 1.1rem;
+    }
+    .footer-list { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+    .footer-list a {
+      font-size: .86rem; color: rgba(255,255,255,.55);
+      transition: color .2s;
+    }
+    .footer-list a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+    }
+    .footer-copy { font-size: .75rem; color: rgba(255,255,255,.22); }
+    .socials { display: flex; gap: .7rem; }
+    .socials a {
+      width: 33px; height: 33px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+    }
+    .socials a:hover {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.28);
+    }
+    .socials svg { width: 14px; height: 14px; fill: rgba(255,255,255,.5); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.4rem; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; padding: 5rem 1.4rem 0; gap: 2.5rem; }
+      .hero-photo-col { order: -1; }
+      .hero-photo { height: 300px; border-radius: 16px 16px 0 0; }
+      .hero-float-card { display: none; }
+      .ep-grid { grid-template-columns: 1fr; }
+      .about-grid, .support-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .sticker { right: .5rem; bottom: .5rem; }
+      .plat-grid { grid-template-columns: 1fr; }
+      .footer-cols { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .s-wrap { padding: 4rem 1.4rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="nav-container flex justify-between items-center px-6 md:px-12 py-4 fixed w-full top-0 z-50">
-        <div class="font-extrabold tracking-tighter text-lg text-[var(--clay)]">THE BORED CAST</div>
-        <div class="flex gap-4 md:gap-6 items-center">
-            <a href="#episodes" class="text-[10px] uppercase tracking-widest hover:text-[var(--clay)] hidden sm:block">Episodes</a>
-            <a href="#support" class="btn-premium">Support GK</a>
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">The Bored<span>Cast</span></a>
+  <ul class="nav-links">
+    <li><a href="#episodes">Episodes</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#listen">Listen</a></li>
+    <li><a href="#support">Support</a></li>
+  </ul>
+  <a href="#support" class="nav-cta">Support the Show</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        <div class="pulse-dot"></div>
+        <span class="hero-badge-text">Season 08 — Now Live</span>
+      </div>
+      <h1 class="hero-h1">
+        Feel Your
+        <span class="serif">Human Feelings.</span>
+      </h1>
+      <p class="hero-sub">A candid, unfiltered exploration of the messy, beautiful, and bored parts of life in Nairobi — hosted by GK Nyambura.</p>
+      <div class="hero-btns">
+        <a href="https://youtube.com/@GKNYAMBURA" target="_blank" rel="noopener" class="btn-dark">
+          <svg style="width:17px;height:17px;fill:#fff;flex-shrink:0" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          Watch on YouTube
+        </a>
+        <a href="#listen" class="btn-outline">All Platforms ↓</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-col">
+      <div class="hero-float-card">
+        <div class="hero-float-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
         </div>
-    </nav>
+        <div>
+          <div class="hero-float-top">New Episode</div>
+          <div class="hero-float-bot">Every Week</div>
+        </div>
+      </div>
+      <img class="hero-photo"
+        src="https://quintus-web.github.io/Bored-Cast/assets/images/pic.jpeg"
+        alt="GK Nyambura — Host of The Bored Cast" />
+      <div class="hero-season-pill">S08 · Weekly Drops</div>
+    </div>
+  </div>
+</section>
 
-    <main class="pt-32 pb-20 px-6 max-w-6xl mx-auto">
-        
-        <section class="mb-32 grid md:grid-cols-2 gap-12 items-center">
-            <div class="order-2 md:order-1">
-                <span class="section-tag mb-4 block">Independent Podcast</span>
-                <h1 class="text-5xl md:text-7xl font-light mb-8 leading-[1.1]">
-                    Feel your <br> <span class="serif-italic text-[var(--clay)]">Human</span> feelings.
-                </h1>
-                <p class="text-sm opacity-80 leading-relaxed mb-10 max-w-sm border-l-2 border-[var(--clay)] pl-6">
-                    A candid exploration of the messy, the beautiful, and the bored parts of life in Nairobi. Hosted by GK Nyambura.
-                </p>
-                <div class="flex gap-6">
-                    <a href="YOUR_SPOTIFY_URL" class="text-xs font-bold underline decoration-[var(--clay)] underline-offset-8 hover:text-[var(--clay)]">SPOTIFY</a>
-                    <a href="https://youtube.com/@GKNYAMBURA" class="text-xs font-bold underline decoration-[var(--clay)] underline-offset-8 hover:text-[var(--clay)]">YOUTUBE</a>
-                </div>
-            </div>
-            
-            <div class="order-1 md:order-2 relative">
-                <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-[var(--clay)]"></div>
-                <div class="bg-[var(--ink)] p-3 shadow-2xl">
-                    <img src="assets/images/pic.jpeg" alt="GK Nyambura" class="w-full grayscale-[20%] hover:grayscale-0 transition duration-700">
-                </div>
-                <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-[var(--clay)]"></div>
-            </div>
-        </section>
+<!-- ── MARQUEE ── -->
+<div class="marquee-bar" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Nairobi Dating</span><span class="dot">✦</span>
+    <span>Career Anxiety</span><span class="dot">✦</span>
+    <span>Finding Your Voice</span><span class="dot">✦</span>
+    <span>Human Feelings</span><span class="dot">✦</span>
+    <span>Unfiltered Conversations</span><span class="dot">✦</span>
+    <span>Season 08</span><span class="dot">✦</span>
+    <span>Independent Podcast</span><span class="dot">✦</span>
+    <span>Nairobi Dating</span><span class="dot">✦</span>
+    <span>Career Anxiety</span><span class="dot">✦</span>
+    <span>Finding Your Voice</span><span class="dot">✦</span>
+    <span>Human Feelings</span><span class="dot">✦</span>
+    <span>Unfiltered Conversations</span><span class="dot">✦</span>
+    <span>Season 08</span><span class="dot">✦</span>
+    <span>Independent Podcast</span><span class="dot">✦</span>
+  </div>
+</div>
 
-        <section id="episodes" class="mb-40">
-            <div class="flex justify-between items-end mb-12 border-b border-white/10 pb-6">
-                <h2 class="section-tag">Archives</h2>
-                <span class="text-[10px] opacity-40 uppercase">Season 08 Live</span>
-            </div>
+<!-- ── EPISODES ── -->
+<section id="episodes">
+  <div class="s-wrap">
+    <div class="s-head">
+      <h2 class="s-title">Latest <span class="ac">Episodes</span></h2>
+      <a href="https://youtube.com/@GKNYAMBURA" target="_blank" class="s-link">View all episodes →</a>
+    </div>
+    <div class="ep-grid">
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-card p-12 group">
-                    <h3 class="text-2xl mb-4 font-extrabold group-hover:text-[var(--clay)] transition">Listen Anywhere</h3>
-                    <p class="text-xs opacity-60 mb-8 leading-loose">Deep dives into Nairobi dating, career anxiety, and finding your voice. Updated weekly.</p>
-                    <a href="YOUR_SPOTIFY_URL" class="btn-premium inline-block">Spotify Feed</a>
-                </div>
-                <div class="glass-card p-12 group border-t-4 border-t-[var(--clay)] md:border-t-1">
-                    <h3 class="text-2xl mb-4 font-extrabold group-hover:text-[var(--clay)] transition">Watch the Visuals</h3>
-                    <p class="text-xs opacity-60 mb-8 leading-loose">Get the full experience. The studio vibes, the outfits, and the unfiltered energy on screen.</p>
-                    <a href="https://youtube.com/@GKNYAMBURA" class="btn-premium inline-block">YouTube Channel</a>
-                </div>
-            </div>
-        </section>
+      <div class="ep-card">
+        <div class="ep-thumb">
+          <img src="https://quintus-web.github.io/Bored-Cast/assets/images/pic.jpeg" alt="Episode" />
+          <div class="ep-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="ep-body">
+          <div class="ep-meta">
+            <span class="ep-num">EP. 08 · 12</span>
+            <span class="ep-sep"></span>
+            <span class="tag orange">Dating</span>
+          </div>
+          <h3 class="ep-title">Why We Keep Dating the Wrong People</h3>
+          <p class="ep-desc">GK breaks down the patterns we repeat in Nairobi's dating scene — and why it's so hard to stop.</p>
+          <div class="ep-foot">
+            <span class="ep-dur">47 MIN</span>
+            <a href="https://youtube.com/@GKNYAMBURA" target="_blank" class="yt-badge">
+              <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+              Watch
+            </a>
+          </div>
+        </div>
+      </div>
 
-        <section id="support" class="bg-[var(--ink)] p-12 md:p-24 text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-[var(--clay)]"></div>
-            <h2 class="section-tag mb-8">Direct Support</h2>
-            <p class="text-4xl md:text-7xl font-extrabold text-[var(--clay)] mb-4 tracking-tighter">3448918</p>
-            <p class="text-[10px] uppercase font-bold tracking-[0.2em] mb-12 opacity-60">Lipa Na M-Pesa Till</p>
-            <p class="text-xs italic opacity-40 max-w-xs mx-auto">
-                Helping keep the conversations independent and the production high quality.
-            </p>
-        </section>
+      <div class="ep-card">
+        <div class="ep-thumb">
+          <img src="https://quintus-web.github.io/Bored-Cast/assets/images/pic.jpeg" alt="Episode" />
+          <div class="ep-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="ep-body">
+          <div class="ep-meta">
+            <span class="ep-num">EP. 08 · 11</span>
+            <span class="ep-sep"></span>
+            <span class="tag green">Career</span>
+          </div>
+          <h3 class="ep-title">Quarter-Life Crisis Is Real — Let's Talk</h3>
+          <p class="ep-desc">The anxiety of being 25. Career pivots, expectations, and what "success" actually means in Nairobi.</p>
+          <div class="ep-foot">
+            <span class="ep-dur">52 MIN</span>
+            <a href="https://youtube.com/@GKNYAMBURA" target="_blank" class="yt-badge">
+              <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+              Watch
+            </a>
+          </div>
+        </div>
+      </div>
 
-    </main>
+      <div class="ep-card">
+        <div class="ep-thumb">
+          <img src="https://quintus-web.github.io/Bored-Cast/assets/images/pic.jpeg" alt="Episode" />
+          <div class="ep-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="ep-body">
+          <div class="ep-meta">
+            <span class="ep-num">EP. 08 · 10</span>
+            <span class="ep-sep"></span>
+            <span class="tag gold">Feelings</span>
+          </div>
+          <h3 class="ep-title">The Art of Doing Absolutely Nothing</h3>
+          <p class="ep-desc">A love letter to boredom. What your idle moments might actually be telling you about your life.</p>
+          <div class="ep-foot">
+            <span class="ep-dur">38 MIN</span>
+            <a href="https://youtube.com/@GKNYAMBURA" target="_blank" class="yt-badge">
+              <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+              Watch
+            </a>
+          </div>
+        </div>
+      </div>
 
-    <footer class="p-12 border-t border-white/5 text-center">
-        <p class="text-[9px] uppercase tracking-[1em] opacity-30">GK NYAMBURA &copy; 2026</p>
-    </footer>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about-bg" id="about">
+  <div class="s-wrap">
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <img class="about-photo"
+          src="https://quintus-web.github.io/Bored-Cast/assets/images/pic.jpeg"
+          alt="GK Nyambura" />
+        <div class="sticker">New<br>Ep.<br>Weekly</div>
+      </div>
+      <div>
+        <div class="about-tag-row"><span class="tag">About the Show</span></div>
+        <h2 class="about-h2">
+          Where Nairobi<br>
+          <span class="serif">speaks honestly.</span>
+        </h2>
+        <p class="about-p">The Bored Cast is where Nairobi's conversations happen in the open — about love, ambition, confusion, and all the things you scroll past but never say out loud.</p>
+        <p class="about-p">Hosted by GK Nyambura, every episode is a candid deep-dive into the messy middle of being alive: the dating drama, the career anxiety, the quiet joy of doing absolutely nothing.</p>
+        <div class="about-stats">
+          <div><div class="astat-n">08</div><div class="astat-l">Seasons</div></div>
+          <div><div class="astat-n">100+</div><div class="astat-l">Episodes</div></div>
+          <div><div class="astat-n">Free</div><div class="astat-l">Always</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LISTEN ── -->
+<section class="listen-bg" id="listen">
+  <div class="s-wrap">
+    <div class="listen-head">
+      <h2 class="s-title">Listen &<br><span class="ac">Watch Anywhere</span></h2>
+      <p class="listen-sub">Deep dives updated every week — on your favourite platform.</p>
+    </div>
+    <div class="plat-grid">
+      <a class="plat-tile" href="#" target="_blank" rel="noopener">
+        <div class="plat-icon" style="background:#1DB954;">
+          <svg viewBox="0 0 24 24" style="fill:#fff;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.53 7.77c-2.67-.8-5.67-.73-8.22.14-.34.11-.7-.08-.81-.42-.11-.34.08-.7.42-.81 2.82-.94 6.12-1.01 9.04-.16.34.1.53.47.43.81-.1.33-.47.53-.86.44zM15.5 11.65c-2.19-.67-4.95-.73-7.15.12-.3.1-.63-.07-.73-.37s.07-.63.37-.73c2.45-.83 5.51-.76 7.98.13.3.09.46.42.36.72s-.42.46-.83.13zm-.62 2.18c-1.76-.52-3.96-.58-5.9.09-.24.08-.5-.06-.58-.3s.06-.5.3-.58c2.13-.72 4.61-.65 6.56.1.24.08.36.34.28.58s-.33.36-.66.11z"/></svg>
+        </div>
+        <div>
+          <div class="plat-name">Spotify</div>
+          <div class="plat-desc">Stream every episode on demand</div>
+        </div>
+        <div class="plat-arr">→</div>
+      </a>
+      <a class="plat-tile" href="https://youtube.com/@GKNYAMBURA" target="_blank" rel="noopener">
+        <div class="plat-icon" style="background:#FF0000;">
+          <svg viewBox="0 0 24 24" style="fill:#fff;"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        </div>
+        <div>
+          <div class="plat-name">YouTube</div>
+          <div class="plat-desc">Full video experience — studio vibes &amp; visuals</div>
+        </div>
+        <div class="plat-arr">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SUPPORT ── -->
+<section class="support-bg" id="support">
+  <div class="s-wrap">
+    <div class="support-grid">
+      <div>
+        <span class="tag">Support the Show</span>
+        <h2 class="support-h2">Keep It<br><span class="serif">Independent.</span></h2>
+        <p class="support-p">Every shilling goes directly into keeping these conversations honest and the production quality high. No ads. No brand deals. Just you and the show.</p>
+      </div>
+      <div class="mpesa-card">
+        <div class="mpesa-top">
+          <div class="mpesa-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+          </div>
+          <div>
+            <div class="mpesa-lbl-top">Lipa Na M-Pesa</div>
+            <div class="mpesa-lbl-bot">GK Nyambura</div>
+          </div>
+        </div>
+        <div class="till-label">Till Number</div>
+        <div class="till-num">3448918</div>
+        <div class="mpesa-div"></div>
+        <ol class="steps">
+          <li>Open M-Pesa on your phone</li>
+          <li>Go to <strong>Lipa Na M-Pesa</strong></li>
+          <li>Select <strong>Buy Goods &amp; Services</strong></li>
+          <li>Enter till <strong>3448918</strong> and your amount</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">The Bored<span>Cast</span></div>
+        <p class="footer-tag">A candid podcast about the messy, beautiful, and bored parts of life in Nairobi. Hosted by GK Nyambura.</p>
+      </div>
+      <div>
+        <div class="footer-col-head">Navigate</div>
+        <ul class="footer-list">
+          <li><a href="#episodes">Episodes</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#listen">Listen</a></li>
+          <li><a href="#support">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Listen On</div>
+        <ul class="footer-list">
+          <li><a href="https://youtube.com/@GKNYAMBURA" target="_blank">YouTube</a></li>
+          <li><a href="#">Spotify</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">GK Nyambura © 2026 — The Bored Cast. All rights reserved.</p>
+      <div class="socials">
+        <a href="https://youtube.com/@GKNYAMBURA" target="_blank" title="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
